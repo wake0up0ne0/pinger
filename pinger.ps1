@@ -12,13 +12,15 @@ while ($true) {
         # Extract the round trip time from the result
         $ResponseTime = $PingResult.ResponseTime
 
-        # Output ping result to the console
-        Write-Host "Response from ${Target}: ${ResponseTime} ms"
-
-        # Check if the response time exceeds threshold
-        if ($ResponseTime -gt $Threshold) {
-            # If response time is larger than threshold, make a beep sound
+        # Check if the response value exceeds the threshold
+        if ($ResponseTime -gt $threshold) {
+            # Write the output in red if it exceeds the threshold
+            Write-Host "Response from ${Target}: ${ResponseTime} ms"  -ForegroundColor Red
             [console]::beep()
+
+        } else {
+            # Normal output if it does not exceed the threshold
+            Write-Host "Response from ${Target}: ${ResponseTime} ms" -ForegroundColor Green
         }
 
         # Wait for 1 second before next ping attempt
