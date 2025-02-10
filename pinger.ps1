@@ -29,6 +29,7 @@ while ($true) {
     } catch {
         # If there is an error in communication (e.g., timeout), log it and retry
         Write-Host "Ping failed. Retrying..."
+        [console]::beep()
         Start-Sleep -Seconds 1
     }
 }
